@@ -16,7 +16,7 @@ navbar:
   type: default # change nav bar type - dependent upon theme
   left:
     - text: "Home"
-      icon: 
+      icon: # https://fontawesome.com/icons?d=gallery
       href: index.html
     - text: "About"
       icon: 
@@ -32,6 +32,21 @@ navbar:
           href: https://github.com/mattlee821/003_BMI_everything_MR-Base
         - text: "004_GRS_frayling"
           href: https://github.com/mattlee821/004_GRS_frayling
+    - text: "Public engagement"
+      icon:
+      href: public-engagement.html
+      menu:
+        - text: "Creative Reactions"
+          href: creative-reactions.html
+        - text:
+        - text:
+        - text:
+        - text:
+        - text:
+    - text: 
+      icon: fa-info
+      href: info.html
+    
   right:
     - icon: fa-university
       href: https://research-information.bristol.ac.uk/en/persons/matthew-lee(185b3727-7dbd-473e-8739-64707af1d160).html
