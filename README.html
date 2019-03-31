@@ -11,7 +11,7 @@
 
 
 
-<title>About this website</title>
+<title>README.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,11 +19,12 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -266,6 +267,101 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -348,46 +444,14 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">About this website</h1>
 
 </div>
 
 
-<p>Page last updated: 31 March, 2019</p>
-<hr />
-<p>Session information for the creation of this website:</p>
-<pre><code>## R version 3.5.3 (2019-03-11)
-## Platform: x86_64-apple-darwin15.6.0 (64-bit)
-## Running under: macOS Mojave 10.14.3
-## 
-## Matrix products: default
-## BLAS: /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
-## LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
-## 
-## locale:
-## [1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-##  [1] forcats_0.3.0   stringr_1.4.0   dplyr_0.8.0.1   purrr_0.3.2    
-##  [5] readr_1.3.1     tidyr_0.8.3     tibble_2.1.1    ggplot2_3.1.0  
-##  [9] tidyverse_1.2.1 htmltools_0.3.6
-## 
-## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.1       cellranger_1.1.0 pillar_1.3.1     compiler_3.5.3  
-##  [5] plyr_1.8.4       tools_3.5.3      digest_0.6.18    lubridate_1.7.4 
-##  [9] jsonlite_1.6     lattice_0.20-38  nlme_3.1-137     evaluate_0.12   
-## [13] gtable_0.2.0     pkgconfig_2.0.2  rlang_0.3.1      cli_1.0.1       
-## [17] rstudioapi_0.9.0 yaml_2.2.0       haven_2.0.0      xfun_0.4        
-## [21] withr_2.1.2      xml2_1.2.0       httr_1.4.0       knitr_1.20      
-## [25] generics_0.0.2   hms_0.4.2        grid_3.5.3       tidyselect_0.2.5
-## [29] glue_1.3.1       R6_2.4.0         readxl_1.1.0     rmarkdown_1.11  
-## [33] bookdown_0.8     modelr_0.1.2     magrittr_1.5     backports_1.1.2 
-## [37] scales_1.0.0     rvest_0.3.2      assertthat_0.2.1 colorspace_1.4-0
-## [41] stringi_1.4.3    lazyeval_0.2.2   munsell_0.5.0    broom_0.5.1     
-## [45] markdown_0.8     crayon_1.3.4</code></pre>
+<div id="mattlee821.github.io" class="section level1">
+<h1>mattlee821.github.io</h1>
+<p>User website</p>
+</div>
 
 <footer role="contentinfo" id="site-footer">
 
@@ -397,6 +461,8 @@ $(document).ready(function () {
 </footer>
 
 
+</div>
+</div>
 
 </div>
 

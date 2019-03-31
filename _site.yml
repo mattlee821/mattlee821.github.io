@@ -12,7 +12,7 @@ output:
       after_body: _footer.html
 
 navbar:
-  title: "hello world"
+  title: ""
   type: default # change nav bar type - dependent upon theme
   left:
     - text: "Home"
