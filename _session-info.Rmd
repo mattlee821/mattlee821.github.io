@@ -1,5 +1,0 @@
-Session information for the creation of this website:
-
-```{r}
-sessionInfo()
-```
