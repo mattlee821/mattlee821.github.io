@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "hello world"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   html_document:
@@ -12,11 +12,6 @@ Page last updated: `r format(Sys.time(), '%d %B, %Y')`
 # source the global R script
 source("_site.R")
 ```
-
-# One Ring to rule them all, One Ring to find them,
-# One Ring to bring them all and in the darkness bind them
-
-
 
 
 
