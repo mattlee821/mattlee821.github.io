@@ -1,8 +1,8 @@
 {
-  "hash": "6f5a5bfe51837cd66420a640d2df3f14",
+  "hash": "598764b26b7c5773ba4b1bebed5c36a8",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ndate: \"2025-06-04\"\ndate-modified: last-modified\ndate-format: \"iso\"\ntitle: \"CV\"\ncategories: [information]\ndescription: \"CV available <a href=https://html-preview.github.io/?url=https://github.com/mattlee821/mattlee821/blob/main/CV/cv.html>_here_</a>; below is an `iframe` of this so it might break now and then\"\nimage: \"procedural-ring.tiff\"\neditor: source\nexecute:\n  fig-path: \"posts/CV/\"\neditor_options: \n  chunk_output_type: console\n---\n\n![](procedural-ring.png)\n\n```{=html}\n <iframe id=\"CV\" src=\"https://html-preview.github.io/?url=https://github.com/mattlee821/mattlee821/blob/main/CV/cv.html\" style=\"border: none; width: 100%; height: 100%\" frameborder=\"0\"></iframe>\n```\n\n\n",
+    "markdown": "---\ndate: \"2025-06-04\"\ndate-modified: last-modified\ndate-format: \"iso\"\ntitle: \"CV\"\ncategories: [information]\ndescription: \"CV available <a href=https://html-preview.github.io/?url=https://github.com/mattlee821/mattlee821/blob/main/CV/cv.html>_here_</a>; below is an `iframe` of this so it might break now and then\"\nimage: \"procedural-ring.png\"\neditor: source\nexecute:\n  fig-path: \"posts/CV/\"\neditor_options: \n  chunk_output_type: console\n---\n\n```{=html}\n <iframe id=\"CV\" src=\"https://html-preview.github.io/?url=https://github.com/mattlee821/mattlee821/blob/main/CV/cv.html\" style=\"border: none; width: 100%; height: 100%\" frameborder=\"0\"></iframe>\n```\n\n\n",
     "supporting": [
       "index_files"
     ],
