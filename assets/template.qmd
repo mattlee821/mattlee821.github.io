@@ -7,7 +7,7 @@ categories: [test, test and test]
 image: https://raw.githubusercontent.com/quarto-dev/quarto-web/main/docs/get-started/hello/rstudio/lter_penguins.png
 editor: source
 execute:
-  fig-path: "posts/2025-01-10-tissue-partitioned-mvmr/"
+  fig-path: "posts/"
 editor_options: 
   chunk_output_type: console
 ---
