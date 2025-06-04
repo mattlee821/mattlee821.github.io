@@ -1,0 +1,270 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+ v2.0 | 20110126
+ License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, date,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: round;
+	list-style-position: inside;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+div.ex2 {
+ max-width: 1000px;
+ margin: auto;
+}
+
+/* end of reset */
+
+
+
+body {
+	font: normal normal 400;
+	font-size: 100%;
+	line-height: 1.5em;
+	/*also written as... font: normal normal 400 100%/1.5em;*/
+	font-family: Avenir,Verdana,sans-serif;
+	margin-top: 1em;
+	margin-left: 1em;
+}
+
+p {
+	position: relative;
+	margin-bottom: 0.1em;
+	margin-right: 0;
+	width: 73%;
+	text-align: justify;
+	left: 25%;
+}
+
+p.publication {
+	position: relative;
+	margin-bottom: 1em;
+	margin-right: 0;
+	width: 96%;
+	text-align: justify;
+	left: 2%;
+}
+
+p.presentation {
+	position: relative;
+	margin-bottom: 1em;
+	margin-right: 0;
+	width: 90%;
+	text-align: justify;
+	left: 8%;
+}
+
+p.para {
+	position: relative;
+	margin-bottom: 1em;
+	margin-right: 0;
+	width: 90%;
+	text-align: justify;
+	left: 8%;
+}
+
+p.date {
+	font: normal normal;
+	font-size: 90%;
+	/*line-height: 1em;*/
+	font-family: Monaco,Menlo,monospace,sans-serif;
+	color: #aaa;
+}
+
+p.date {
+	position: relative;
+	left: 2%;
+}
+
+p.date2 {
+	font: normal normal;
+	font-size: 90%;
+	/*line-height: 1em;*/
+	font-family: Monaco,Menlo,monospace,sans-serif;
+	color: #aaa;
+}
+p.date2 {
+	position: relative;
+	left: 2%;
+}
+
+
+ul {
+ position: relative;
+	margin-bottom: 1.5em;
+	margin-top: -0.5em;
+	width: 63%;
+	text-align: left;
+	left: 30%;
+	margin-left: 1em;
+}
+
+/*uncomment to get dashes in the list*/
+/*li:before {
+	content: "-";
+	position: relative;
+	left: -0.25em;
+}*/
+
+li {
+	/*second line indent*/
+	padding-left: 1.25em;
+	text-indent: -1.25em;
+	/*color: #777;*/
+}
+
+li ul {
+	position: relative;
+	left: 0;
+	width: 98%;
+	margin-top: 0.25em;
+}
+
+h1,h2,h3,h4 {
+	font-weight: 400;
+	font-family: Avenir,Cousine,Verdana,sans-serif;
+	width: 65%;
+	left: 0%;
+}
+
+h1 {
+	text-align: left;
+	font-size: 3em;
+	line-height: 1em;
+	position: relative;
+	text-align: left;
+	left: 0%;
+}
+
+p.subtitle {
+	font-style: italic;
+	font-size: 110%;
+	text-align: justify;
+	left: 0%;
+	width: 98%;
+}
+
+h2 {
+	font-size: 1.1em;
+	color: #bc412b;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	position: relative;
+	top: 1em;
+	text-align: left;
+	width: 30%;
+	left: 0%;
+}
+
+h3 {
+	font-size: 1.1em;
+	color: #bc412b;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	position: relative;
+	top: 1em;
+	text-align: left;
+	width: 20%;
+	left: 2%;
+}
+
+h4 {
+	font-size: 1em;
+	line-height: 2em;
+	position: relative;
+	top: 0em;
+	text-align: left;
+	left: 30%;
+	width: 10%;
+}
+
+a {
+	color: #bc412b;
+	/*text-decoration:none*/
+}
+
+a:hover {
+	color:#39f
+}
+
+#webaddress {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	position: relative;
+	left: 0%;
+	color: #bc412b;
+	font-family: Monaco,Menlo,monospace,sans-serif;
+	font-size: 100%;
+}
+
+#webaddress a {
+	text-decoration: none;
+	color: #bc412b;
+}
+
+#webaddress a:hover {
+	color:#39f
+}
+
+
+em {
+	/* font-weight: bold; */
+	font-style: italic;
+}
+
+strong {
+	font-weight: bold;
+}
+
+#address {
+	display: none;
+}
+
+hr {
+ display: block;
+ margin-top: 0.5em;
+ margin-bottom: 0.5em;
+ margin-left: auto;
+ margin-right: 2%;
+ border-style: inset;
+ border-width: 1px;
+}

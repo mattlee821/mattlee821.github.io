@@ -17,7 +17,8 @@ page-layout: full
 title-block-banner: false
 date-modified: last-modified
 title: ""
-subtitle: "Test and test"
-description: "Code, projects, ideas, overviews..."
+subtitle: "Code, projects, ideas, overviews..."
+description: ""
+image-placeholder: "posts/CV/procedural-ring.tiff"
 ---
 

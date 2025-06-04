@@ -1,0 +1,230 @@
+---
+date: "2025-06-04"
+date-modified: last-modified
+date-format: "iso"
+title: "forest-fire model"
+categories: [shiny, app, model]
+image: "https://upload.wikimedia.org/wikipedia/commons/0/01/Forest_fire_model.gif"
+editor: source
+execute:
+  fig-path: "posts/forest-fire/"
+editor_options: 
+  chunk_output_type: console
+---
+
+Forest-fire models are not models of forest fires. Instead they're models through which we can explore dynamic systems. This is a simple `R` Shiny app that takes input probabilities for trees and fires; the app is rendered [here](https://mattlee.shinyapps.io/forestfire-model/) and was inspired by an [artist residency](https://www.bristol.ac.uk/public-engagement/case-studies/maths-made-art/).
+
+First we set the environment, including `N_grid` which is the size of our grid - `N_grid` = 1000 is equivalent to a `100x100` grid - and make a set of functions.
+```{r}
+#| eval: false
+
+# environment ====
+library(shiny)
+library(ggplot2)
+library(reshape2)
+N_grid <- 1000
+```
+
+The 1st function is to create a grid (the land where trees grow)
+```{r}
+#| eval: false
+# Initialize the grid 
+# 0 = empty, 1 = tree, 2 = fire, 3 = cooling (empty but can't grow tree yet)
+data_init_forest <- function(size) {
+  list(
+    grid = matrix(0, nrow = size, ncol = size),
+    stats = list(
+      total_trees = 0,
+      fires_started = 0,
+      trees_burned = 0
+    )
+  )
+}
+```
+
+The 2nd function is for tree growth. We specify that trees can only grow on empty cells.
+```{r}
+#| eval: false
+# Update empty cells to trees based on probability
+grow_trees <- function(forest, p_growth) {
+  grid <- forest$grid
+  # Only grow trees in cells that are empty (0) but not cooling (3)
+  new_trees <- which(grid == 0 & runif(length(grid)) < (p_growth / N_grid))
+  
+  if (length(new_trees) > 0) {
+    grid[new_trees] <- 1
+    forest$stats$total_trees <- forest$stats$total_trees + length(new_trees)
+  }
+  
+  forest$grid <- grid
+  return(forest)
+}
+```
+
+The 3rd function is for fires to start. We specify that fires can only start on cells with a tree.
+```{r}
+#| eval: false
+# Start fires in trees based on probability
+start_fires <- function(forest, p_fire) {
+  grid <- forest$grid
+  new_fires <- which(grid == 1 & runif(length(grid)) < (p_fire / N_grid))
+  
+  if (length(new_fires) > 0) {
+    grid[new_fires] <- 2
+    forest$stats$fires_started <- forest$stats$fires_started + length(new_fires)
+    forest$stats$trees_burned <- forest$stats$trees_burned + length(new_fires)
+  }
+  
+  forest$grid <- grid
+  return(forest)
+}
+```
+
+The 4th function is for fires to spread. We specify that fires can only spread to adjacent cells if there is a tree already present. We also add that after one iteration a fire is converted to a cooling state (i.e., it can not be a tree or a new fire in the next iteration) to prevent a fire-loop and that a cooling state is converted to an empty state.
+```{r}
+#| eval: false
+# Spread fire to adjacent trees and handle cooling
+spread_fire <- function(forest) {
+  grid <- forest$grid
+  size <- nrow(grid)
+  
+  # Find all fires
+  fires <- which(grid == 2, arr.ind = TRUE)
+  new_grid <- grid
+  
+  # Spread fire to adjacent trees
+  if (nrow(fires) > 0) {
+    for (i in 1:nrow(fires)) {
+      x <- fires[i, 1]
+      y <- fires[i, 2]
+      
+      # Check adjacent cells (up, down, left, right)
+      neighbors <- rbind(
+        c(x - 1, y), c(x + 1, y),
+        c(x, y - 1), c(x, y + 1)
+      )
+      
+      # Only consider valid grid coordinates
+      valid_neighbors <- neighbors[
+        neighbors[, 1] > 0 & neighbors[, 1] <= size &
+          neighbors[, 2] > 0 & neighbors[, 2] <= size, 
+      ]
+      
+      # Convert adjacent trees to fires
+      for (n in 1:nrow(valid_neighbors)) {
+        if (grid[valid_neighbors[n, 1], valid_neighbors[n, 2]] == 1) {
+          new_grid[valid_neighbors[n, 1], valid_neighbors[n, 2]] <- 2
+          forest$stats$trees_burned <- forest$stats$trees_burned + 1
+        }
+      }
+    }
+  }
+  
+  # Convert fires to cooling state
+  new_grid[grid == 2] <- 3
+  # Convert cooling state to empty
+  new_grid[grid == 3] <- 0
+  
+  forest$grid <- new_grid
+  return(forest)
+}
+```
+
+We make a simple sidebar layout Shiny app so we can adjust probabilities and see the model change dynamically. We also add some monitoring and print metrics so we can see the number of iterations and the cumulative number of trees grown, fires started, and trees burnt. 
+```{r}
+#| eval: false
+# testing ====
+# ui ====
+ui <- fluidPage(
+  titlePanel("Forest Fire Model"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("p_growth", "Tree Growth Probability (%)", 
+                  min = 0, max = 10, value = 5),
+      sliderInput("p_fire", "Fire Start Probability (%)", 
+                  min = 0, max = 10, value = 1),
+      actionButton("reset", "Reset Forest"),
+      hr(),
+      h4("Statistics:"),
+      textOutput("iterationCount"),
+      textOutput("totalTrees"),
+      textOutput("firesStarted"),
+      textOutput("treesBurned")
+    ),
+    mainPanel(
+      plotOutput("forestPlot")
+    )
+  )
+)
+
+# server ====
+server <- function(input, output, session) {
+  size <- 100
+  forest <- reactiveVal(data_init_forest(size))
+  iteration <- reactiveVal(0)
+  
+  autoUpdate <- reactiveTimer(200)
+  
+  observeEvent(input$reset, {
+    forest(data_init_forest(size))
+    iteration(0)
+  })
+  
+  observeEvent(autoUpdate(), {
+    current_forest <- forest()
+    iter <- iteration() + 1
+    
+    # First grow new trees (only in empty, non-cooling cells)
+    current_forest <- grow_trees(current_forest, input$p_growth)
+    
+    # Then start new fires
+    current_forest <- start_fires(current_forest, input$p_fire)
+    
+    # Finally spread existing fires and handle cooling
+    current_forest <- spread_fire(current_forest)
+    
+    forest(current_forest)
+    iteration(iter)
+  })
+  
+  output$forestPlot <- renderPlot({
+    forest_data <- melt(forest()$grid)
+    colnames(forest_data) <- c("x", "y", "state")
+    
+    ggplot(forest_data, aes(x, y, fill = factor(state))) +
+      geom_tile() +
+      scale_fill_manual(values = c("black", "green3", "red2", "gray20")) +
+      guides(fill = "none") +
+      theme_minimal() +
+      theme(axis.text = element_blank(),
+            axis.title = element_blank(),
+            axis.ticks = element_blank(),
+            panel.grid = element_blank())
+  })
+  
+  # Statistics outputs
+  output$iterationCount <- renderText({
+    paste("Iteration:", iteration())
+  })
+  
+  output$totalTrees <- renderText({
+    paste("Total Trees grown:", forest()$stats$total_trees)
+  })
+  
+  output$firesStarted <- renderText({
+    paste("Fires started:", forest()$stats$fires_started)
+  })
+  
+  output$treesBurned <- renderText({
+    paste("Trees burned:", forest()$stats$trees_burned)
+  })
+}
+
+# launch ====
+shinyApp(ui, server)
+```
+
+```{=html}
+ <iframe id="example1" src="https://mattlee.shinyapps.io/forestfire-model/" style="border: none; width: 100%; height: 500px" frameborder="0"></iframe>
+```
+_This is an `iframe` of the rendered [app](https://mattlee.shinyapps.io/forestfire-model/); it takes a while to load and is choppy; it is interactive but mostly its for illustration_

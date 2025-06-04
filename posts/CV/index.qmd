@@ -1,0 +1,48 @@
+---
+date: "2025-06-04"
+date-modified: last-modified
+date-format: "iso"
+title: "CV"
+categories: [information]
+description: "CV available <a href=https://html-preview.github.io/?url=https://github.com/mattlee821/mattlee821/blob/main/CV/cv.html>_here_</a>; below is an `iframe` of this so it might break now and then"
+image: "procedural-ring.png"
+editor: source
+execute:
+  fig-path: "posts/CV/"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{=html}
+ <iframe id="CV" src="https://html-preview.github.io/?url=https://github.com/mattlee821/mattlee821/blob/main/CV/cv.html" style="border: none; width: 100%; height: 100%" frameborder="0"></iframe>
+```
+
+```{r}
+#| eval: false
+#| include: false
+library(generative) # devtools::install_github("marcusvolz/generative")
+library(ggplot2)
+library(dplyr)
+
+# VARS ====
+seed <- 821
+n <- 400
+n_circles <- 4
+r_0 <- 500
+eps <- 500
+eps_big <- 5000
+p_defect <- 0.1
+delta <- 2.02
+
+# data ====
+df <- procedural_ring(seed, n, n_circles, r_0, eps, eps_big, p_defect, delta)
+
+# plot ====
+p <- ggplot() +
+  geom_segment(aes(x, y, xend = xend, yend = yend), df, size = 0.025, alpha = 0.05) +
+  coord_equal() +
+  theme_void()
+
+# save ====
+ggsave("posts/CV/procedural-ring.png", p, width = 800, height = 800, units = "px")
+```
