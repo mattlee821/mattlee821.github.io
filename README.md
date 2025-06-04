@@ -1,5 +1,3 @@
-# Lab book
-
 ## To generate
 
 Downlaod the [quarto CLI](https://quarto.org/docs/get-started/), then run
