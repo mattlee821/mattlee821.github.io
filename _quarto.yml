@@ -19,11 +19,7 @@ website:
       - text: "{{< iconify fa6-brands google-scholar >}}"
         href: "https://scholar.google.com/citations?hl=en&user=uAAbf8kAAAAJ"
         target: "_blank"
-        
-  page-footer:
-    border: false
-    left: "Theme styling from [quantumjitter](https://github.com/cgoo4/quantumjitter/tree/main) &#8729; Made with [Quarto](https://quarto.org)"
-
+         
 format:
   html:
     pagetitle: "mattlee821.github.io"

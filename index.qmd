@@ -18,7 +18,7 @@ title-block-banner: false
 date-modified: last-modified
 title: ""
 subtitle: "Code, projects, ideas, overviews..."
-description: ""
+description: "Theme styling from [quantumjitter](https://github.com/cgoo4/quantumjitter/tree/main); made with [Quarto](https://quarto.org)"
 image-placeholder: "posts/CV/procedural-ring.tiff"
 ---
 
