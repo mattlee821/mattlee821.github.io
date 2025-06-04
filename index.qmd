@@ -1,0 +1,23 @@
+---
+listing:
+  contents: posts
+  type: grid
+  sort: "date desc"
+  grid-columns: 3
+  grid-item-border: true
+  table-striped: true
+  table-hover: true
+  fields: [image, date, file-modified, title, categories, reading-time]
+  date-format: "iso"
+  categories: true
+  sort-ui: true
+  filter-ui: true
+  page-size: 9
+page-layout: full
+title-block-banner: false
+date-modified: last-modified
+title: ""
+subtitle: "Test and test"
+description: "Code, projects, ideas, overviews..."
+---
+

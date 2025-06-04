@@ -1,0 +1,10 @@
+.card-file-modified:before {
+    content: "Updated: ";
+}
+
+footer {
+  padding: 0px 10px;  /* reduce top/bottom and side padding */
+  font-size: 50%;       /* optional: applies to all text inside */
+  line-height: 0;     /* tighten line spacing if needed */
+}
+

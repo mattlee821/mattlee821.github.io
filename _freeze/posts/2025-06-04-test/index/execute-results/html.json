@@ -1,0 +1,17 @@
+{
+  "hash": "417f3ecf62aa0a13c43b3f1a28117a60",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ndate: \"2025-01-01\"\ndate-modified: last-modified\nauthor: \"mattlee821\"\ndate-format: \"iso\"\ntitle: \"Test\"\ncategories: [test, test and test]\nimage: https://raw.githubusercontent.com/quarto-dev/quarto-web/main/docs/get-started/hello/rstudio/lter_penguins.png\neditor: source\nexecute:\n  fig-path: \"posts/2025-01-10-tissue-partitioned-mvmr/\"\neditor_options: \n  chunk_output_type: console\n---\n\n\n\n## Meet Quarto\n\nQuarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.\n\n## Meet the penguins\n\n![](https://raw.githubusercontent.com/quarto-dev/quarto-web/main/docs/get-started/hello/rstudio/lter_penguins.png){style=\"float:right;\" fig-alt=\"Illustration of three species of Palmer Archipelago penguins: Chinstrap, Gentoo, and Adelie. Artwork by @allison_horst.\" width=\"401\"}\n\nThe `penguins` data from the [**palmerpenguins**](https://allisonhorst.github.io/palmerpenguins \"palmerpenguins R package\") package contains size measurements for 344 penguins from three species observed on three islands in the Palmer Archipelago, Antarctica.\n\nThe plot below shows the relationship between flipper and bill lengths of these penguins.\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](index_files/figure-html/plot-penguins-1.png){width=672}\n:::\n:::\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

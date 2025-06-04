@@ -1,0 +1,40 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: ""
+  favicon: assets/favicon.ico
+
+  navbar:
+    search: false
+    logo: assets/favicon.ico
+    right:
+      - text: "{{< iconify fa6-brands github >}}"
+        href: "https://github.com/mattlee821"
+        target: "_blank"
+      - text: "{{< iconify fa6-brands orcid >}}"
+        href: "https://orcid.org/0000-0001-6262-3447"
+        target: "_blank"
+      - text: "{{< iconify fa6-brands google-scholar >}}"
+        href: "https://scholar.google.com/citations?hl=en&user=uAAbf8kAAAAJ"
+        target: "_blank"
+        
+  page-footer:
+    border: false
+    left: "Theme styling from [quantumjitter](https://github.com/cgoo4/quantumjitter/tree/main) &#8729; Made with [Quarto](https://quarto.org)"
+
+format:
+  html:
+    pagetitle: "mattlee821.github.io"
+    respect-user-color-scheme: true
+    theme: 
+      light: [flatly, assets/light.scss]
+      dark: [darkly, assets/dark.scss]
+    css: assets/styles.css
+    link-external-newwindow: true
+    link-external-icon: false
+    lightbox: true
+
+execute:
+  freeze: auto
